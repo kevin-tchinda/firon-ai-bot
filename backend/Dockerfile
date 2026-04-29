@@ -6,8 +6,8 @@ WORKDIR /app
 # Install system dependencies for Chroma and other libraries
 RUN apt-get update && apt-get install -y \
     build-essential \
+    python3-dev \
     curl \
-    software-properties-common \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements and install

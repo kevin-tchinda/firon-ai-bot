@@ -1,14 +1,10 @@
 FROM nginx:alpine
 
 # Copy the widget files to the nginx public directory
-# We copy them into a subdirectory 'widget' to match the expected pathing in documentation
 COPY . /usr/share/nginx/html/widget/
 
-# Create a simple index.html for health checks and basic testing
+# Create a simple index.html for health checks
 RUN echo "Firon Chat Widget Static Server is running" > /usr/share/nginx/html/index.html
 
-# Expose port 80
-EXPOSE 80
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# We'll use a shell script to replace the port at runtime
+CMD sed -i 's/listen\s*80;/listen '"$PORT"';/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'

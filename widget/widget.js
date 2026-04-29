@@ -6,6 +6,10 @@
         welcomeMessage: globalConfig.welcomeMessage || "Hello! I am the Firon Roofing AI. How can I help you today?",
     };
 
+    // Auto-detect asset base path from the script's own location
+    const scriptSrc = document.currentScript ? document.currentScript.src : '';
+    const assetBaseUrl = scriptSrc.substring(0, scriptSrc.lastIndexOf('/') + 1);
+
     let isOpen = false;
     let currentTab = 'home';
     let conversationHistory = [];
@@ -70,7 +74,7 @@
         <div class="firon-chat-header">
             <div class="firon-home-header-content" style="display:none;">
                 <div class="firon-home-logo">
-                    <img src="widget/firon-logo.webp" alt="Firon Roofing">
+                    <img src="${assetBaseUrl}firon-logo.webp" alt="Firon Roofing">
                 </div>
                 <div class="firon-home-welcome" style="margin-top:10px; font-weight:500;">Trusted Ottawa Roofing Experts</div>
             </div>

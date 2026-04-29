@@ -1,6 +1,11 @@
 # Environment & Secrets
 .env
 *.env
+backend/.env
+backend/*.env
+widget/.env
+widget/*.env
+
 .venv/
 venv/
 env/

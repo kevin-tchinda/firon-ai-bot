@@ -1,0 +1,27 @@
+# Environment & Secrets
+.env
+*.env
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# Local Databases
+chroma_db/
+
+# Logs
+*.log
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Distribution
+dist/
+build/
+*.egg-info/

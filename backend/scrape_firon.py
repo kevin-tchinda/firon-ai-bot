@@ -82,11 +82,18 @@ def scrape_page(url):
     chunks = "\n".join(line for line in lines if line)
     return {"url": url, "text": chunks}
 
-data = []
-for url in URLS:
-    print(f"Scraping {url}")
-    data.append(scrape_page(url))
+def run_scraper():
+    data = []
+    for url in URLS:
+        print(f"Scraping {url}")
+        try:
+            data.append(scrape_page(url))
+        except Exception as e:
+            print(f"Error scraping {url}: {e}")
 
-with open("firon_knowledge.json", "w") as f:
-    json.dump(data, f, indent=2)
-print("Saved firon_knowledge.json")
+    with open("firon_knowledge.json", "w") as f:
+        json.dump(data, f, indent=2)
+    print("Saved firon_knowledge.json")
+
+if __name__ == "__main__":
+    run_scraper()

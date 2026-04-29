@@ -23,6 +23,9 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.documents import Document
 import json
+from scrape_firon import run_scraper
+from rag_pipeline import run_pipeline
+
 
 load_dotenv()
 
@@ -34,19 +37,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load scraped knowledge (from firon_knowledge.json)
-with open("firon_knowledge.json", "r") as f:
-    pages = json.load(f)
+# Run startup scripts
+print("--- Starting Startup Scripts ---")
+run_scraper()
+run_pipeline()
+print("--- Startup Scripts Completed ---")
 
-documents = []
-for page in pages:
-    doc = Document(page_content=page["text"], metadata={"source": page["url"]})
-    documents.append(doc)
-
-# Create vector store
+# Load vector store from disk (created by rag_pipeline)
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
-vectorstore = Chroma.from_documents(documents, embeddings, persist_directory="./chroma_db")
+vectorstore = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
 retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
+
 
 # Create LLM
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)

@@ -73,6 +73,9 @@
     chatWindow.innerHTML = `
         <div class="firon-chat-header">
             <div class="firon-home-header-content" style="display:none;">
+                <button class="firon-icon-btn firon-home-close-btn" id="firon-home-close-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
                 <div class="firon-home-logo">
                     <img src="${assetBaseUrl}firon-logo.webp" alt="Firon Roofing">
                 </div>
@@ -167,6 +170,7 @@
     const sendBtn = chatWindow.querySelector('#firon-send');
     const menuBtn = chatWindow.querySelector('#firon-menu-btn');
     const closeBtn = chatWindow.querySelector('#firon-close-btn');
+    const homeCloseBtn = chatWindow.querySelector('#firon-home-close-btn');
     const dropdownMenu = chatWindow.querySelector('#firon-menu-dropdown');
     const emojiMenuBtn = chatWindow.querySelector('#firon-emoji-btn');
     const emojiPicker = chatWindow.querySelector('#firon-emoji-picker');
@@ -219,6 +223,7 @@
     toggleBtn.addEventListener('click', () => setOpen(!isOpen));
     proactiveAlert.onclick = () => setOpen(true);
     closeBtn.addEventListener('click', () => setOpen(false));
+    homeCloseBtn.addEventListener('click', () => setOpen(false));
     bckBtn.addEventListener('click', () => switchTab('home'));
     
     chatWindow.querySelectorAll('.firon-action-card').forEach(card => {

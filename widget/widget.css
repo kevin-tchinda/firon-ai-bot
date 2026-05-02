@@ -248,6 +248,20 @@
 .firon-icon-btn:hover { background: rgba(255,255,255,0.15); }
 .firon-icon-btn svg { width: 1.1em; height: 1.1em; }
 
+.firon-home-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+}
+.firon-home-close-btn:hover {
+    background: rgba(0, 0, 0, 0.3) !important;
+    transform: scale(1.05);
+}
+
 /* Dropdown Menu */
 .firon-dropdown-menu {
     position: absolute;
@@ -571,6 +585,32 @@
         bottom: 0; right: 0;
         width: 100vw; height: 100dvh; max-height: 100dvh;
         border-radius: 0;
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
     }
+    
+    .firon-chat-header {
+        padding-top: calc(10px + env(safe-area-inset-top));
+    }
+
+    .firon-tab-home .firon-chat-header {
+        padding-top: calc(30px + env(safe-area-inset-top));
+    }
+
+    .firon-chat-input-area {
+        padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    }
+
     .firon-chat-window.firon-is-open ~ .firon-chat-toggle { display: none; }
+    
+    /* Ensure close buttons are large enough for touch */
+    .firon-icon-btn {
+        width: 44px;
+        height: 44px;
+    }
+
+    .firon-home-close-btn {
+        top: calc(10px + env(safe-area-inset-top));
+        right: 10px;
+    }
 }

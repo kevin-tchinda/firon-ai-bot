@@ -1,4 +1,4 @@
-# tech-job-search
+# Tech Job Search
 
 A personal job-application system for technical roles in the Ottawa region and remote Canada. It combines a structured master profile of my background with a taxonomy of target job families, a matching specification, a set of resume-selection rules, and an ATS-oriented LaTeX template. The goal is repeatable, honest, tailored applications rather than one generic resume sent everywhere.
 
